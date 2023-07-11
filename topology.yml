@@ -1,5 +1,4 @@
-name: test-only
-
+name: test-lab8-client
 hosts:
 
   - name: client
