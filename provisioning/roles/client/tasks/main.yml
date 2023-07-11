@@ -55,8 +55,8 @@
   shell: cp /home/user/john/run/keepass2john /usr/sbin/
   ignore_errors: true
 
-- name: remove /usr/sbin/john
-  shell: rm /usr/sbin/john
+# - name: remove /usr/sbin/john
+#   shell: rm /usr/sbin/john
 
 # Instal Metasploit
 - name: Create directory for Metasploit
