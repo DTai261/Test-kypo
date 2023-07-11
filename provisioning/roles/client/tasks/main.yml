@@ -1,5 +1,9 @@
 ---
 # This is a role for setting up the client.
+- name: Create alias for server
+  lineinfile:
+    path: '/etc/hosts'
+    line: '192.168.40.5 server'
 
 - name: Add passwords file to the home directory
   copy:
@@ -7,5 +11,29 @@
     dest: /home/user/passlist.txt
     owner: user
     mode: 0644
+
+- name: Add keepass file to the home directory
+  copy:
+    src: Secret_keepass.kdb
+    dest: /home/user/Secret_keepass.kdb
+    owner: user
+    mode: 0644
+
+- name: Install John
+  apt:
+    pkg:
+     - john
+    update_cache: yes
+
+- name: Download metasploit
+  get_url:
+    url: https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb
+    dest: /home/user/msf/msfinstall
+    mode: '0755'
+
+- name: Run msfinstall script
+  shell: "./msfinstall"
+  args:
+    chdir: /home/user/msf
 
 ...
