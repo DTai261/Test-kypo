@@ -5,6 +5,12 @@
     path: '/etc/hosts'
     line: '192.168.40.5 server'
 
+- name: Install git
+  apt:
+    pkg:
+     - git
+    update_cache: yes
+
 - name: Add passwords file to the home directory
   copy:
     src: passlist.txt
@@ -19,12 +25,38 @@
     owner: user
     mode: 0644
 
+# Install gcc compiler
+-name : Install gcc compiler
+  apt:
+    pkg:
+      - build-essential
+      - manpages-dev
+    
+# Install John
 - name: Install John
   apt:
     pkg:
      - john
     update_cache: yes
 
+- name: Clone John the Ripper repository
+  git:
+    repo: https://github.com/openwall/john.git
+    dest: /home/user
+
+- name: Change to John the Ripper source directory
+  shell: cd /home/user/john/src
+
+- name: Configure John the Ripper
+  shell: ./configure --without-openssl && make
+  
+- name: copy keepass2john to /usr/sbin
+  shell: cp keepass2john /usr/sbin/
+
+- name: remove /usr/sbin/john
+  shell: rm /usr/sbin/john
+
+# Instal Metasploit
 - name: Create directory for Metasploit
   file:
     path: "/home/user/msf"
