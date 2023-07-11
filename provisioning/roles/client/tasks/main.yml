@@ -42,7 +42,7 @@
 - name: Clone John the Ripper repository
   git:
     repo: https://github.com/openwall/john.git
-    dest: /home/user
+    dest: /home/user/john
 
 - name: Change to John the Ripper source directory
   shell: cd /home/user/john/src
