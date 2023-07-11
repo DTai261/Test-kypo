@@ -20,6 +20,10 @@
       kypo_user_access_username: user
       kypo_user_access_password: Password123
       kypo_user_access_sudo: True
+    - name: kypo-user-access
+      kypo_user_access_username: john
+      kypo_user_access_password: Not_an_easy_password
+      kypo_user_access_sudo: True
     - name: client
 
 
