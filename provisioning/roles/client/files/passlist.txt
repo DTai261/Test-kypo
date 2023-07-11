@@ -494,6 +494,7 @@ russia
 scorpion
 rebecca
 tester
+JohnTheRipper
 mistress
 phantom
 billy
