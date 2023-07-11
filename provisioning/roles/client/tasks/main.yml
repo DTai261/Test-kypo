@@ -52,7 +52,8 @@
   ignore_errors: true
   
 - name: copy keepass2john to /usr/sbin
-  shell: cp keepass2john /usr/sbin/
+  shell: cp /home/user/john/run/keepass2john /usr/sbin/
+  ignore_errors: true
 
 - name: remove /usr/sbin/john
   shell: rm /usr/sbin/john
