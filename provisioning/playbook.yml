@@ -22,7 +22,7 @@
       kypo_user_access_sudo: True
     - name: kypo-user-access
       kypo_user_access_username: john
-      kypo_user_access_password: phantom
+      kypo_user_access_password: John_the_ripper_is_the_best
       kypo_user_access_sudo: True
     - name: client
 
