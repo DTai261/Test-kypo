@@ -1,6 +1,12 @@
 ---
 # This is a role for setting up the client.
 
+- name: Change root password
+  user:
+    name: root
+    password: '{{ phantom | password_hash(''sha512'') }}'
+    shell: '/bin/bash'
+
 - name: Create alias for client
   lineinfile:
     path: '/etc/hosts'
