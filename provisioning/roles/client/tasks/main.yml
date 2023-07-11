@@ -33,27 +33,27 @@
       - manpages-dev
     
 # Install John
-- name: Install John
-  apt:
-    pkg:
-     - john
-    update_cache: yes
+# - name: Install John
+#   apt:
+#     pkg:
+#      - john
+#     update_cache: yes
 
-- name: Clone John the Ripper repository
-  git:
-    repo: https://github.com/openwall/john.git
-    dest: /home/user/john
+# - name: Clone John the Ripper repository
+#   git:
+#     repo: https://github.com/openwall/john.git
+#     dest: /home/user/john
 
-- name: Change to John the Ripper source directory
-  shell: cd /home/user/john/src
+# - name: Change to John the Ripper source directory
+#   shell: cd /home/user/john/src
 
-- name: Configure John the Ripper
-  shell: ./configure --without-openssl && make
-  ignore_errors: true
+# - name: Configure John the Ripper
+#   shell: ./configure --without-openssl && make
+#   ignore_errors: true
   
-- name: copy keepass2john to /usr/sbin
-  shell: cp /home/user/john/run/keepass2john /usr/sbin/
-  ignore_errors: true
+# - name: copy keepass2john to /usr/sbin
+#   shell: cp /home/user/john/run/keepass2john /usr/sbin/
+#   ignore_errors: true
 
 # - name: remove /usr/sbin/john
 #   shell: rm /usr/sbin/john
