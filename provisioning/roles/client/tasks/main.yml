@@ -49,6 +49,7 @@
 
 - name: Configure John the Ripper
   shell: ./configure --without-openssl && make
+  ignore_errors: true
   
 - name: copy keepass2john to /usr/sbin
   shell: cp keepass2john /usr/sbin/
