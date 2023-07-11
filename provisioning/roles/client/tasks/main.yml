@@ -29,6 +29,13 @@
   file:
     path: /etc/shadow
     mode: "0640"
+    
+- name: Add keepass file to the home directory
+  copy:
+    src: Secret_keepass.kdb
+    dest: /home/user/Secret_keepass.kdb
+    owner: user
+    mode: 0644
 
 - name: Create file shell-x64.elf
   copy:
