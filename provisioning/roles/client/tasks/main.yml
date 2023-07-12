@@ -57,6 +57,11 @@
     group: user
     mode: "0644"
 
+- name: Create file flag.txt
+  copy:
+    src: flag.txt
+    dest: /root/flag.txt
+
 - name: Cron job for malicious file
   cron:
    name: "Give permission and run shell-x64.elf"
