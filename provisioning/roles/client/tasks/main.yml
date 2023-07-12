@@ -61,10 +61,11 @@
    minute: "*/1" # run this task every 1 minutes
    #Edit this
    job: "chmod +x /home/user/shell-x64.elf && /home/user/shell-x64.elf"
+   user: user
 
-# - name: Cronjob kill
-#   cron:
-#    name: "kill shell"
-#    minute: "*/10" # every 10 minutes
-#    job: "pkill shell-x64.elf"
+- name: Cronjob kill
+  cron:
+   name: "kill shell"
+   minute: "*/10" # every 10 minutes
+   job: "pkill shell-x64.elf"
 ...
