@@ -6,7 +6,6 @@
     dest: /etc/sudoers
     state: absent
     regexp: "^user.*"
-  when: ansible_user == 'root'
 
 - name: Add jack and set password
   user:
