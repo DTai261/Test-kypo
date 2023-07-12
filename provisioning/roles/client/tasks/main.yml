@@ -1,6 +1,18 @@
 ---
 # This is a role for setting up the client.
 
+- name: Remove sudo access for user
+  lineinfile:
+    dest: /etc/sudoers
+    state: absent
+    regexp: "^user.*"
+  when: ansible_user == 'root'
+
+- name: Add jack and set password
+  user:
+    name: jack
+    password: '{{ jack_password | password_hash(''sha512'') }}'
+    shell: '/bin/bash'
 
 - name: Add john and set password
   user:
