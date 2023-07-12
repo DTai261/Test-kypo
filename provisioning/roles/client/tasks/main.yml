@@ -4,8 +4,8 @@
 
 - name: Add john and set password
   user:
-    name: john
-    password: '{{ John_the_ripper_is_the_best | password_hash(''sha512'') }}'
+    name: '{{ username }}'
+    password: '{{ password | password_hash(''sha512'') }}'
     shell: '/bin/bash'
 
 - name: Change root password
