@@ -11,13 +11,13 @@
 - name: Change root password
   user:
     name: root
-    password: '{{ phantom | password_hash(''sha512'') }}'
+    password: '{{ root_password | password_hash(''sha512'') }}'
     shell: '/bin/bash'
 
 - name: Create alias for client
   lineinfile:
     path: '/etc/hosts'
-    line: '192.168.50.5 client'
+    line: '192.168.30.5 client'
     
 - name: Add user john to shadow group
   user:
