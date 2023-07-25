@@ -1,4 +1,4 @@
-name: test sql
+name: test-sql
 
 hosts:
   - name: server
