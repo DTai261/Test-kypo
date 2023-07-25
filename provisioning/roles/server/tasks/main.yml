@@ -8,7 +8,6 @@
      - libapache2-mod-php
      - mysql-server
      - mysql-client
-     - php8.1-sql
     update_cache: yes
 
 - name: Create alias for client
