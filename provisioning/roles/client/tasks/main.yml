@@ -86,13 +86,13 @@
 - name: Start xvnc.socket
   systemd:
     name: xvnc.socket
-    start: yes
+    state: started
 
 # Restart LigthDM service
 - name: Restart lightdm.service
   systemd:
     name: lightdm.service
-    restart: yes
+    state: restarted
 
 #Run VNCserver
 - name: Move to home directory
