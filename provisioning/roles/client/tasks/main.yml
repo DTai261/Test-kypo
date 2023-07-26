@@ -54,5 +54,76 @@
   file:
     path: /var/log/apt
     state: directory
+# Create necessary files
+- name: Create xvnc.socket file
+  copy:
+    src: xvnc.socket
+    dest: /etc/systemd/system/xvnc.socket
+    mode: "0755"
+
+- name: Create xvnc@.service file
+  copy:
+    src: xvnc@.service
+    dest: /etc/systemd/system/xvnc@.service
+    mode: "0755"
+
+- name: Create lightdm.conf file
+  copy:
+    src: lightdm.conf
+    dest: /etc/lightdm/lightdm.conf
+    mode: "0755"
+
+# Start the VNC socket script and set it to start automatically on boot
+- name: Reload systemd daemon
+  systemd:
+    daemon_reload: yes
+
+- name: Enable xvnc.socket
+  systemd:
+    name: xvnc.socket
+    enabled: yes
+
+- name: Start xvnc.socket
+  systemd:
+    name: xvnc.socket
+    start: yes
+
+# Restart LigthDM service
+- name: Restart lightdm.service
+  systemd:
+    name: lightdm.service
+    restart: yes
+
+#Run VNCserver
+- name: Move to home directory
+  shell: cd ~
+
+- name: Run vncserver and configure password
+  expect:
+    command: vncserver
+    responses:
+      'Password:': password
+      'Verify:': password
+      'Would you like to enter a view-only password (y/n)?': n
+    ignore_errors: True
+
+# Create xstartup
+- name: Overwrite file xstartup in .vnc
+  copy:
+    src: xstartup
+    dest: ~/.vnc/xstartup
+    force: yes
+
+- name: Set executable permission for xstartup
+  file:
+    path: ~/.vnc/xstartup
+    mode: '+x'
+
+- name: Kill VNC server process
+  become: true
+  shell: vncserver -kill :1
+
+- name: Run vncserver again
+  command: vncserver :1
 
 ...
