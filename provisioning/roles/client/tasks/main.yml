@@ -1,11 +1,58 @@
 ---
 # This is a role for setting up the client.
 
-- name: Add passwords file to the home directory
-  copy:
-    src: passlist.txt
-    dest: /home/user/passlist.txt
-    owner: user
-    mode: 0644
+- name: Update apt cache
+  apt:
+    update_cache: yes
+
+- name: Install Wireshark package
+  apt:
+    name: wireshark
+    state: present
+
+- name: Set debconf value for lightdm
+  debconf:
+    name: lightdm
+    question: lightdm/display-manager
+    value: lightdm
+    vtype: string
+
+- name: Install xfce4 and xfce4-goodies
+  apt:
+    name: 
+      - xfce4
+      - xfce4-goodies
+    update_cache: yes
+
+- name: Reboot the machine
+  reboot:
+    reboot_timeout: 480
+    pre_reboot_delay: 0
+    post_reboot_delay: 30
+  become: true
+  become_method: sudo
+  async: 0
+  poll: 0
+  register: reboot_result
+  ignore_errors: true
+
+- name: Wait for the machine to come back online
+  wait_for_connection:
+    delay: 10
+    timeout: 480
+
+- name: Install tigervnc-standalone-server and tigervnc-xorg-extension and tigervnc-viewer
+  become: true
+  apt:
+    name: 
+      - tigervnc-standalone-server
+      - tigervnc-xorg-extension
+      - tigervnc-viewer
+    state: present
+
+- name: Create /var/log/apt directory
+  file:
+    path: /var/log/apt
+    state: directory
 
 ...
