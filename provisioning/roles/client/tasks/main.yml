@@ -17,6 +17,12 @@
     value: lightdm
     vtype: string
 
+- name: Install lightdm
+  apt:
+    name: 
+      - lightdm
+    update_cache: yes
+
 - name: Install xfce4 and xfce4-goodies
   apt:
     name: 
