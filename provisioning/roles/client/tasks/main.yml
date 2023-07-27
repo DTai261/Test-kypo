@@ -111,7 +111,7 @@
       'Password:': password
       'Verify:': password
       'Would you like to enter a view-only password (y/n)?': n
-    # ignore_errors: True
+  ignore_errors: True
 
 # Create xstartup
 - name: Overwrite file xstartup in .vnc
