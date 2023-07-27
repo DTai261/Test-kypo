@@ -94,11 +94,11 @@
     name: xvnc.socket
     state: started
 
-# Restart LigthDM service
-- name: Restart lightdm.service
-  systemd:
-    name: lightdm.service
-    state: restarted
+# # Restart LigthDM service
+# - name: Restart lightdm.service
+#   systemd:
+#     name: lightdm.service
+#     state: restarted
 
 #Run VNCserver
 - name: Move to home directory
