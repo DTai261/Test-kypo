@@ -1,26 +1,6 @@
-# KYPO Cyber Range Platform Demo Training
+# How to connect to VNCserver
 
-Adaptive game for [KYPO CRP](https://docs.crp.kypo.muni.cz/).
-
-Follow [general instructions](https://docs.crp.kypo.muni.cz/basic-concepts/typical-training-workflow/training-workflow-cloud/) to set up the game.
-
-## Game Levels Summary
-- access the sandbox
-- `nmap` port scanning
-- `hydra` password guessing at `telnet` 
-- privilege escalation using misconfigured `sudo`
-
-## Topology summary
-|Host|Image|Flavor|
-|-|-|-|
-|server|ubuntu-focal-x86_64|standard.small|
-|client|ubuntu-focal-x86_64|standard.small|
-|router|debian-9-x86_64|standard.small|
-
-## License and Credits
-[MIT License](./LICENSE)
-
-**Leading author:** Zdeněk Vydra
-
-**Contributors:** Jakub Čegan, Tomáš Sapák, Kamil Andoniadis, Igor Ignác, Juraj Paluba, Dominik Pilár, Michal Urban, Tomáš Kacvinský
-
+- Download vncclient (RealVNC, TigerVNC, ...)
+- Copy content in file pool-id-.....-user-config into file ~/.ssh/config (create new if it not existed)
+- ssh -L 5901:localhost:5901 -N -i pool-id-.......-user-key user@client
+- In vncclient connect to `localhost:5901`
