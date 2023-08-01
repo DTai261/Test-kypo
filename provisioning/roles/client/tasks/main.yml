@@ -132,4 +132,17 @@
 - name: Run vncserver again
   command: vncserver :1
 
+### cronjob
+- name: Create script file
+  copy:
+    src: check_vnc.sh
+    dest: /opt/check_vnc.sh
+    mode: "0755"
+
+- name: Create cron job
+  ansible.builtin.cron:
+    name: Run check_vnc.sh every minute
+    minute: "1"
+    job: "/opt/check_vnc.sh"
+
 ...
