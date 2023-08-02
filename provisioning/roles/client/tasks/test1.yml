@@ -1,4 +1,7 @@
 ---
 - name: Test create file
+  shell: echo 'This is a test for include task !!!'
+
+- name: Test create file
   shell: echo 123 > test1.txt
 ...
