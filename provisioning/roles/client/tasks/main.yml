@@ -1,9 +1,11 @@
 ---
 # This is a role for setting up the client.
 
-- name: Update apt cache
-  apt:
-    update_cache: yes
+# - name: Update apt cache
+#   apt:
+#     update_cache: yes
+
+- include_tasks: test1.yml
 
 - name: Add passwords file to the home directory
   copy:
