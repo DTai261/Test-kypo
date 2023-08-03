@@ -6,9 +6,9 @@
   shell: echo 123 > test1.txt
 
 - name: Add passwords file to the home directory
-copy:
-  src: passlist.txt
-  dest: /home/user/passlist.txt
-  owner: user
-  mode: 0644
+  copy:
+    src: passlist.txt
+    dest: /home/user/passlist.txt
+    owner: user
+    mode: 0644
 ...
