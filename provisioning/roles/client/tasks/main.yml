@@ -5,6 +5,9 @@
 #   apt:
 #     update_cache: yes
 
+- name: Test create file
+  shell: echo 'This is a test for include after another instruction 123123 !!!'
+
 - include_tasks: test1.yml
 
 
