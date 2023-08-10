@@ -47,6 +47,7 @@
   mysql_query:
     login_user: root
     login_password: "{{ mysql_root_password }}"
+    db: movie_blog
     query: |
       CREATE TABLE movies (
         movie_id INT AUTO_INCREMENT PRIMARY KEY,
