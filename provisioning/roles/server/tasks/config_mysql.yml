@@ -70,4 +70,5 @@
     login_user: root
     login_password: "{{ mysql_root_password }}"
     target: /opt/movies.sql
+  ignore_errors: true
 ...
