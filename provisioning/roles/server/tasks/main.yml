@@ -8,6 +8,7 @@
      - libapache2-mod-php
      - mysql-server
      - mysql-client
+     - python3
     update_cache: yes
 
 - name: Create alias for client
