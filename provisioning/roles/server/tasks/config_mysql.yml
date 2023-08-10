@@ -57,6 +57,11 @@
         poster_url VARCHAR(255)
       )
   ignore_errors: true
+
+- name: Create movies.sql
+  copy:
+    dest: /opt/movies.sql
+    src: movies.sql
   
 - name: Insert Sample Data
   mysql_db:
@@ -64,5 +69,5 @@
     state: import
     login_user: root
     login_password: "{{ mysql_root_password }}"
-    target: movies.sql
+    target: /opt/movies.sql
 ...
