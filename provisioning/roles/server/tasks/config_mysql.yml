@@ -1,0 +1,62 @@
+---
+- hosts: localhost
+  become: yes
+  vars:
+    mysql_root_password: your_root_password
+    mysql_user: movie_user
+    mysql_user_password: user_password
+  tasks:
+    - name: Install MySQL Server
+      apt:
+        name: mysql-server
+        state: present
+
+    - name: Secure MySQL Installation
+      mysql_user:
+        login_user: root
+        login_password: ""
+        user: root
+        host: localhost
+        password: "{{ mysql_root_password }}"
+        priv: "*.*:ALL,GRANT"
+        state: present
+
+    - name: Create MySQL User
+      mysql_user:
+        login_user: root
+        login_password: "{{ mysql_root_password }}"
+        user: "{{ mysql_user }}"
+        host: localhost
+        password: "{{ mysql_user_password }}"
+        priv: "*.*:ALL"
+        state: present
+
+    - name: Create Database
+      mysql_db:
+        name: movie_blog
+        state: present
+        login_user: root
+        login_password: "{{ mysql_root_password }}"
+
+    - name: Create Movies Table
+      mysql_db:
+        name: movie_blog
+        state: table
+        login_user: root
+        login_password: "{{ mysql_root_password }}"
+        sql: "CREATE TABLE movies (
+                  movie_id INT AUTO_INCREMENT PRIMARY KEY,
+                  title VARCHAR(255) NOT NULL,
+                  description TEXT,
+                  release_date DATE,
+                  poster_url VARCHAR(255)
+                )"
+
+    - name: Insert Sample Data
+      mysql_db:
+        name: movie_blog
+        state: import
+        login_user: root
+        login_password: "{{ mysql_root_password }}"
+        target: movies.sql
+...
