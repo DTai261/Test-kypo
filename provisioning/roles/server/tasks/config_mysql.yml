@@ -6,10 +6,10 @@
     mysql_user: movie_user
     mysql_user_password: user_password
   tasks:
-    - name: Install MySQL Server
-      apt:
-        name: mysql-server
-        state: present
+    # - name: Install MySQL Server
+    #   apt:
+    #     name: mysql-server
+    #     state: present
 
     - name: Secure MySQL Installation
       mysql_user:
