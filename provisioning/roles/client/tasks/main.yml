@@ -1,12 +1,12 @@
 ---
 # This is a role for setting up the client.
 
-- name: Install packages
-  become: true
-  apt:
-    name: 
-      - firefox
-    state: present
+# - name: Install packages
+#   become: true
+#   apt:
+#     name: 
+#       - firefox
+#     state: present
 
 - name: Create alias for server
   lineinfile:
