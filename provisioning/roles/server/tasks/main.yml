@@ -25,19 +25,14 @@
     dest: /var/www/html/super_secret/phpinfo.php
     src: phpinfo.php
 
-- name: Create phpinfor file
-  copy:
-    dest: /var/www/html/phpinfo.php
-    src: phpinfo.php
-
 - name: Create index.php file
   copy:
-    dest: /var/www/html/index.php
+    dest: /var/www/html/super_secret/index.php
     src: index.php
 
 - name: Create movie.php file
   copy:
-    dest: /var/www/html/movie.php
+    dest: /var/www/html/super_secret/movie.php
     src: movie.php
 
 # Include Config mysql
