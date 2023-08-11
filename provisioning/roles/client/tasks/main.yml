@@ -1,13 +1,18 @@
 ---
 # This is a role for setting up the client.
 
-- name: Update apt cache
+- name: Install packages
+  become: true
   apt:
-    update_cache: yes
+    name: 
+      - firefox
+    state: present
 
 - name: Create alias for server
   lineinfile:
     path: '/etc/hosts'
     line: '192.168.20.5 server'
 
+# Include Config GUI
+- include_tasks: Config_GUI.yml
 ...
