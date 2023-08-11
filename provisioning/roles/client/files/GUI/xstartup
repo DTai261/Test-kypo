@@ -1,0 +1,5 @@
+#!/bin/bash
+DESKTOP_SESSION=xfce
+export DESKTOP_SESSION
+startxfce4
+vncserver-virtual -kill $DISPLAY

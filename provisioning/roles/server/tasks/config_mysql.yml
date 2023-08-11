@@ -43,7 +43,7 @@
     login_user: root
     login_password: "{{ mysql_root_password }}"
 
-- name: Create Movies Table
+- name: Create Table Movies, Users, Reviews
   mysql_query:
     login_user: root
     login_password: "{{ mysql_root_password }}"
@@ -55,8 +55,54 @@
         description TEXT,
         release_date DATE,
         poster_url VARCHAR(255)
+      );
+      CREATE TABLE users (
+        user_id INT AUTO_INCREMENT PRIMARY KEY,
+        username VARCHAR(255),
+        email VARCHAR(255),
+        password VARCHAR(255)
+      );
+      CREATE TABLE reviews (
+        review_id INT AUTO_INCREMENT PRIMARY KEY,
+        movie_id INT,
+        user_id INT,
+        rating INT,
+        review_text TEXT,
+        FOREIGN KEY (movie_id) REFERENCES movies(movie_id),
+        FOREIGN KEY (user_id) REFERENCES users(user_id)
       )
   ignore_errors: true
+
+# - name: Create Users Table
+#   mysql_query:
+#     login_user: root
+#     login_password: "{{ mysql_root_password }}"
+#     login_db: movie_blog
+#     query: |
+#       CREATE TABLE users (
+#         user_id INT AUTO_INCREMENT PRIMARY KEY,
+#         username VARCHAR(255),
+#         email VARCHAR(255),
+#         password VARCHAR(255)
+#       )
+#   ignore_errors: true
+
+# - name: Create Users Table
+#   mysql_query:
+#     login_user: root
+#     login_password: "{{ mysql_root_password }}"
+#     login_db: movie_blog
+#     query: |
+#       CREATE TABLE reviews (
+#         review_id INT AUTO_INCREMENT PRIMARY KEY,
+#         movie_id INT,
+#         user_id INT,
+#         rating INT,
+#         review_text TEXT,
+#         FOREIGN KEY (movie_id) REFERENCES movies(movie_id),
+#         FOREIGN KEY (user_id) REFERENCES users(user_id)
+#       )
+#   ignore_errors: true
 
 - name: Create movies.sql
   copy:
