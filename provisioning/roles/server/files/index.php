@@ -15,7 +15,7 @@
     
     <?php
     // Connect to the database
-    $conn = new mysqli('localhost', 'username', 'your_root_password', 'movie_blog');
+    $conn = new mysqli('localhost', 'root', 'your_root_password', 'movie_blog');
 
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
