@@ -30,6 +30,16 @@
     dest: /var/www/html/phpinfo.php
     src: phpinfo.php
 
+- name: Create index.php file
+  copy:
+    dest: /var/www/html/index.php
+    src: index.php
+
+- name: Create movie.php file
+  copy:
+    dest: /var/www/html/movie.php
+    src: movie.php
+
 # Include Config mysql
 - include_tasks: config_mysql.yml
 
