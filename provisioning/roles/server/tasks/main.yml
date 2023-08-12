@@ -32,10 +32,10 @@
     dest: /var/www/html/super_secret/index.php
     src: index.php
 
-- name: Create movie.php file
-  copy:
-    dest: /var/www/html/super_secret/movie.php
-    src: movie.php
+# - name: Create movie.php file
+#   copy:
+#     dest: /var/www/html/super_secret/movie.php
+#     src: movie.php
 
 # Include Config mysql
 - include_tasks: config_mysql.yml
