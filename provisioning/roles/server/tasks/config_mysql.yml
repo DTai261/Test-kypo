@@ -16,6 +16,17 @@
   set_fact:
     ansible_python_interpreter: /usr/bin/python3
 
+- name: Update short_open_tag
+  lineinfile:
+    path: /etc/php/7.4/apache2/php.ini
+    regexp: '^short_open_tag = Off'
+    line: 'short_open_tag = On'
+
+- name: Restart Apache2 service
+  systemd:
+    name: apache2
+    state: restarted
+
 - name: Secure MySQL Installation
   mysql_user:
     login_user: root
@@ -36,42 +47,66 @@
     priv: "*.*:ALL"
     state: present
 
-- name: Create Database
-  mysql_db:
-    name: movie_blog
-    state: present
-    login_user: root
-    login_password: "{{ mysql_root_password }}"
+- name: Create Assignment.zip
+  copy:
+    dest: /var/www/html/super_secret/Assignment.zip
+    src: Assignment.zip
 
-- name: Create Table Movies, Users, Reviews
-  mysql_query:
-    login_user: root
-    login_password: "{{ mysql_root_password }}"
-    login_db: movie_blog
-    query: |
-      CREATE TABLE movies (
-        movie_id INT AUTO_INCREMENT PRIMARY KEY,
-        title VARCHAR(255) NOT NULL,
-        description TEXT,
-        release_date DATE,
-        poster_url VARCHAR(255)
-      );
-      CREATE TABLE users (
-        user_id INT AUTO_INCREMENT PRIMARY KEY,
-        username VARCHAR(255),
-        email VARCHAR(255),
-        password VARCHAR(255)
-      );
-      CREATE TABLE reviews (
-        review_id INT AUTO_INCREMENT PRIMARY KEY,
-        movie_id INT,
-        user_id INT,
-        rating INT,
-        review_text TEXT,
-        FOREIGN KEY (movie_id) REFERENCES movies(movie_id),
-        FOREIGN KEY (user_id) REFERENCES users(user_id)
-      )
-  ignore_errors: true
+- name: Unzip the file
+  unarchive:
+    src: /var/www/html/Assignment.zip
+    dest: /var/www/html/
+    remote_src: yes
+
+- name: Create student_management.sql
+  copy:
+    dest: /opt/student_management.sql
+    src: student_management.sql
+
+- name: Import SQL file
+      mysql_db:
+        name: "student_management"
+        state: import
+        target: "/opt/student_management.sql"
+        login_user: root
+        login_password: "{{ mysql_root_password }}"
+
+# - name: Create Database
+#   mysql_db:
+#     name: movie_blog
+#     state: present
+#     login_user: root
+#     login_password: "{{ mysql_root_password }}"
+
+# - name: Create Table Movies, Users, Reviews
+#   mysql_query:
+#     login_user: root
+#     login_password: "{{ mysql_root_password }}"
+#     login_db: movie_blog
+#     query: |
+#       CREATE TABLE movies (
+#         movie_id INT AUTO_INCREMENT PRIMARY KEY,
+#         title VARCHAR(255) NOT NULL,
+#         description TEXT,
+#         release_date DATE,
+#         poster_url VARCHAR(255)
+#       );
+#       CREATE TABLE users (
+#         user_id INT AUTO_INCREMENT PRIMARY KEY,
+#         username VARCHAR(255),
+#         email VARCHAR(255),
+#         password VARCHAR(255)
+#       );
+#       CREATE TABLE reviews (
+#         review_id INT AUTO_INCREMENT PRIMARY KEY,
+#         movie_id INT,
+#         user_id INT,
+#         rating INT,
+#         review_text TEXT,
+#         FOREIGN KEY (movie_id) REFERENCES movies(movie_id),
+#         FOREIGN KEY (user_id) REFERENCES users(user_id)
+#       )
+#   ignore_errors: true
 
 # - name: Create Users Table
 #   mysql_query:
@@ -104,17 +139,17 @@
 #       )
 #   ignore_errors: true
 
-- name: Create movies.sql
-  copy:
-    dest: /opt/movies.sql
-    src: movies.sql
+# - name: Create movies.sql
+#   copy:
+#     dest: /opt/movies.sql
+#     src: movies.sql
   
-- name: Insert Sample Data
-  mysql_db:
-    name: movie_blog
-    state: import
-    login_user: root
-    login_password: "{{ mysql_root_password }}"
-    target: /opt/movies.sql
-  ignore_errors: true
+# - name: Insert Sample Data
+#   mysql_db:
+#     name: movie_blog
+#     state: import
+#     login_user: root
+#     login_password: "{{ mysql_root_password }}"
+#     target: /opt/movies.sql
+#   ignore_errors: true
 ...

@@ -24,7 +24,7 @@
     // Fetch movies from the database based on search query
     if (isset($_GET['search'])) {
         $search = $_GET['search'];
-        $sql = "SELECT * FROM movies WHERE title LIKE '%$search%'";
+        $sql = "SELECT * FROM movies WHERE title LIKE '%" . $search . "%'";
     } else {
         $sql = "SELECT * FROM movies";
     }
