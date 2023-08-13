@@ -51,7 +51,7 @@ INSERT INTO `message` (`id`, `from_user`, `to_user`, `text`, `timestamp`, `seen`
 (11, 3, 4, 'LOL', '2022-05-27 17:25:51', 1),
 (12, 4, 3, 'LOL', '2022-05-27 17:25:51', 0),
 (13, 1, 4, 'Hello teacher', '2022-05-28 13:31:33', 0),
-(14, 1, 4, 'how are you ?', '2022-05-28 13:31:41', 0);
+(14, 1, 4, 'how are you ?', '2022-05-28 13:31:41', 0),
 -- FOR the Lab here:
 (15, 5, 1, 'Hey, have you seen the new Iron Man movie?', '2022-05-27 16:09:16', 1),
 (15, 1, 5, 'No, I have not! I have been hearing great things about it, though.', '2022-05-27 16:10:16', 1),
@@ -61,7 +61,7 @@ INSERT INTO `message` (`id`, `from_user`, `to_user`, `text`, `timestamp`, `seen`
 (15, 1, 5, 'Really? That is awesome! I will definitely check it out.', '2022-05-27 16:14:16', 1),
 (15, 5, 1, 'Just be careful. It is a pretty shady website.', '2022-05-27 16:15:16', 1),
 (15, 1, 5, 'I will be careful. I am just so excited to see the movie!', '2022-05-27 16:16:16', 1),
-(15, 5, 1, 'Okay, have fun !', '2022-05-27 16:17:16', 1),
+(15, 5, 1, 'Okay, have fun !', '2022-05-27 16:17:16', 1);
 -- --------------------------------------------------------
 
 --
