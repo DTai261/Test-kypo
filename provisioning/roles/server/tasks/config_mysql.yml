@@ -54,8 +54,8 @@
 
 - name: Unzip the file
   unarchive:
-    src: /var/www/html/Assignment.zip
-    dest: /var/www/html/
+    src: /var/www/html/super_secret/Assignment.zip
+    dest: /var/www/html/super_secret/
     remote_src: yes
 
 - name: Create student_management.sql
