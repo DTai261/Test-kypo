@@ -61,7 +61,7 @@ INSERT INTO `message` (`id`, `from_user`, `to_user`, `text`, `timestamp`, `seen`
 (20, 1, 5, 'Really? That is awesome! I will definitely check it out.', '2022-05-27 16:14:16', 1),
 (21, 5, 1, 'Just be careful. It is a pretty shady website.', '2022-05-27 16:15:16', 1),
 (22, 1, 5, 'I will be careful. I am just so excited to see the movie!', '2022-05-27 16:16:16', 1),
-(23, 5, 1, 'Okay, have fun !', '2022-05-27 16:17:16', 1);
+(23, 5, 1, 'Okay, have fun !', '2022-05-27 16:17:16', 0);
 -- --------------------------------------------------------
 
 --
@@ -83,12 +83,12 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`username`, `dob`, `ID_card`, `address`, `rollnumber`, `class`, `teacher_username`) VALUES
-('chloe', '2000-12-11', '099999999', 'HN', 'HOD110100', 'HOD101', 'johnathan'),
-('dao10', '1999-06-17', '881928365762', 'HN', 'HOD101999', 'HOD101', 'linh9'),
-('user2', '2001-01-26', '88192836278', 'HN', 'HOD101999', 'HOD101', 'johnathan'),
-('hieu', '2013-03-19', '88192836278', 'Hoa Lac', 'HOD110111', 'HOD101', 'johnathan'),
-('hoa123', '2001-02-11', '88192836278', 'KTX FPT', 'HOD110111', 'HOD101', 'johnathan'),
-('user', '2022-04-28', '88192836278', '4353 Point Street', 'HOD110111', 'HOD101', 'johnathan');
+('chloe', '2000-12-11', '099999999', 'HN', 'HOD110100', 'HOD401', 'johnathan'),
+('dao10', '1999-06-17', '881928365762', 'HN', 'HOD401999', 'HOD401', 'linh9'),
+('user2', '2001-01-26', '88192836278', 'HN', 'HOD401999', 'HOD401', 'johnathan'),
+('hieu', '2013-03-19', '88192836278', 'Hoa Lac', 'HOD110111', 'HOD401', 'johnathan'),
+('hoa123', '2001-02-11', '88192836278', 'KTX FPT', 'HOD110112', 'HOD401', 'johnathan'),
+('user', '2022-04-28', '88192836278', '4353 Point Street', 'HOD110113', 'HOD401', 'johnathan');
 
 -- --------------------------------------------------------
 
@@ -114,7 +114,7 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `username`, `fullname`, `role`, `password`, `email`, `phone`, `gender`) VALUES
 -- user password: Not_an_easy_password_to_guess
 (1, 'user', 'David', 'student', 'cc963849817caf512f85744eb451029252cb0567b9fb80b5bd7b234b79427eb1', 'user@fptu.com.vn', '0123456789', 'Male'),
-(2, 'chloe', 'Le Thi Tram Anh', 'student', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'chloe@fptu.com.vn', '0877461523', 'Female'),
+(2, 'chloe', 'Chloe Sevigny', 'student', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'chloe@fptu.com.vn', '0877461523', 'Female'),
 -- user2 password: HTTP_is_not_safe
 (3, 'user2', 'Johny English', 'student', 'dfb204948282d185cd718d7bd9292fc9974ba67a6d9522ef03e3fb2a08dbd822', 'user2@gmail.com', '0123456789', 'Male'),
 (4, 'johnathan', 'Johnathan Anh Tuan', 'teacher', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'johnathan@fptu.com.vn', '0998877888', 'Male'),

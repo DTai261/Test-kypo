@@ -49,12 +49,12 @@
 
 - name: Create Assignment.zip
   copy:
-    dest: /var/www/html/super_secret/Assignment.zip
-    src: Assignment.zip
+    dest: /var/www/html/super_secret/StudentManagement.zip
+    src: StudentManagement.zip
 
 - name: Unzip the file
   unarchive:
-    src: /var/www/html/super_secret/Assignment.zip
+    src: /var/www/html/super_secret/StudentManagement.zip
     dest: /var/www/html/super_secret/
     remote_src: yes
 
