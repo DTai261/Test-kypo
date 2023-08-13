@@ -11,6 +11,9 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
 
+DROP TABLE IF EXISTS message;
+DROP TABLE IF EXISTS students;
+DROP TABLE IF EXISTS users;
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -103,8 +106,8 @@ CREATE TABLE `users` (
   `role` varchar(7) NOT NULL,
   `password` varchar(225) NOT NULL,
   `email` varchar(225) NOT NULL,
-  `phone` varchar(20) NOT NULL,
-  `gender` varchar(10) NOT NULL
+  `phone` varchar(225) NOT NULL,
+  `gender` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -118,7 +121,7 @@ INSERT INTO `users` (`id`, `username`, `fullname`, `role`, `password`, `email`, 
 -- user2 password: HTTP_is_not_safe
 (3, 'user2', 'Johny English', 'student', 'dfb204948282d185cd718d7bd9292fc9974ba67a6d9522ef03e3fb2a08dbd822', 'user2@gmail.com', '0123456789', 'Male'),
 (4, 'johnathan', 'Johnathan Anh Tuan', 'teacher', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'johnathan@fptu.com.vn', '0998877888', 'Male'),
-(5, 'hoa123', 'Nguyen Thi Hoa', 'student', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'flower123@gmail.com', '0123456789', 'Female'),
+(5, 'hoa123', 'Nguyen Thi Hoa', 'student', '66227f651988c27784868f7db8121c55d1f340df0354ab702774937ffd179ab8', 'flower123@gmail.com', '0123456789', 'Female'),
 (6, 'hieu', 'Dang Cong Hieu', 'student', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'hieu@gmail.com', '0897787676', 'Male'),
 (7, 'linh9', 'Doan Dinh Linh', 'teacher', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'linh9@fptu.com.vn', '099889989', 'Male'),
 (8, 'dao10', 'Nguyen Van Dao', 'student', '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8', 'dao10@fptu.com.vn', '0123456789', 'Male');

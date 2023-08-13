@@ -27,10 +27,6 @@
     dest: /var/www/html/super_secret/phpinfo.php
     src: phpinfo.php
 
-- name: Create index.php file
-  copy:
-    dest: /var/www/html/super_secret/index.php
-    src: index.php
 
 # - name: Create movie.php file
 #   copy:
