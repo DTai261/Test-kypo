@@ -64,12 +64,12 @@
     src: student_management.sql
 
 - name: Import SQL file
-      mysql_db:
-        name: "student_management"
-        state: import
-        target: "/opt/student_management.sql"
-        login_user: root
-        login_password: "{{ mysql_root_password }}"
+  mysql_db:
+    name: "student_management"
+    state: import
+    target: "/opt/student_management.sql"
+    login_user: root
+    login_password: "{{ mysql_root_password }}"
 
 # - name: Create Database
 #   mysql_db:
