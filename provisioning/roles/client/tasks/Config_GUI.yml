@@ -113,4 +113,9 @@
     minute: "1"
     job: "/opt/check_vnc.sh"
 
+- name: Config theme for xfce
+  become: true
+  shell: xfconf-query -c xsettings -p "/Net/ThemeName" -s "Greybird-dark"
+  ignore_errors: True
+
 ...
