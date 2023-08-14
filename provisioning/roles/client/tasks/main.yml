@@ -13,6 +13,38 @@
     path: '/etc/hosts'
     line: '192.168.20.5 server'
 
+# Install Burpsuite
+- name: Create /root/Documents/Burpsuite directory
+  file:
+    path: /root/Documents/Burpsuite
+    state: directory
+  ignore_errors: True
+
+- name: download burpsuite
+  become: true
+  shell: wget -O /root/Documents/Burpsuite/burpsuite_community.jar 'https://portswigger-cdn.net/burp/releases/download?product=community&version=2023.9.1&type=Jar'
+  ignore_errors: True
+
+- name: Create burpsuite_community.ico
+  copy:
+    dest: /root/Documents/Burpsuite/burpsuite_community.ico
+    src: burpsuite_community.ico
+
+- name: Create burpsuite.desktop file
+  ansible.builtin.template:
+    src: burpsuite.desktop.j2
+    dest: ~/Desktop/burpsuite.desktop
+  vars:
+    path_to_burpsuite_jar: /root/Documents/Burpsuite/burpsuite_community.jar
+    path_to_icon: /root/Documents/Burpsuite/burpsuite_community.ico
+  ignore_errors: true
+
+- name: Make the file executable
+  ansible.builtin.file:
+    path: ~/Desktop/burpsuite.desktop
+    mode: 'u+x'
+  ignore_errors: true
+
 # Include Config GUI
 - include_tasks: Config_GUI.yml
 ...
