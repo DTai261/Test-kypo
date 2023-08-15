@@ -1,0 +1,71 @@
+---
+# This is a role for setting up the server.
+
+- name: Create alias for client
+  lineinfile:
+    path: '/etc/hosts'
+    line: '192.168.30.5 client'
+
+- name: Install vsftpd
+  apt:
+    name: vsftpd
+    state: present
+
+- name: Add jack and set password
+  user:
+    name: jack
+    password: '{{ jack_password | password_hash(''sha512'') }}'
+    shell: '/bin/bash'
+
+- name: Create /home/jack/ftp directory
+  file:
+    path: /home/jack/ftp
+    state: directory
+    owner: jack
+
+- name: Create From_David file
+  copy:
+    dest: /home/jack/ftp/From_David
+    src: From_David
+    owner: jack
+
+- name: Create From_John file
+  copy:
+    dest: /home/jack/ftp/From_John
+    src: From_John
+    owner: jack
+
+- name: Create From_Root file
+  copy:
+    dest: /home/jack/ftp/From_Root
+    src: From_Root
+    owner: jack
+
+- name: Create /opt/anonymous_ftp directory
+  file:
+    path: /opt/anonymous_ftp
+    state: directory
+
+- name: Create Announcement file
+  copy:
+    dest: /opt/anonymous_ftp/Announcement
+    src: Announcement
+
+- name: Create vsftpd.conf file
+  copy:
+    dest: /etc/vsftpd.conf
+    src: vsftpd.conf
+    force: true
+
+- name: Create vsftpd.userlist file
+  copy:
+    dest: /etc/vsftpd.userlist
+    src: vsftpd.userlist
+    force: true
+
+- name: Restart vsftpd
+  systemd:
+    name: vsftpd
+    state: restarted
+
+...
