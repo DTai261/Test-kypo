@@ -98,7 +98,7 @@
   shell: vncserver -kill :1
 
 - name: Run vncserver again
-  command: vncserver :1
+  command: vncserver
 
 ### cronjob
 - name: Create script file

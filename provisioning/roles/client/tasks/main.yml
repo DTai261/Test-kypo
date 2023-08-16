@@ -8,6 +8,14 @@
 #       - firefox
 #     state: present
 
+- name: Install openjdk-8-jdk
+  become: true
+  apt:
+    name: 
+      - openjdk-8-jdk
+    state: present
+  ignore_errors: True
+
 - name: Create alias for server
   lineinfile:
     path: '/etc/hosts'
